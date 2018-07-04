@@ -4,8 +4,11 @@
 -- Date:	18/06/2018
 --
 -- When		Who			What
+-- 2018-07-04   MLavery     Added NOCOUNT
 -- 
 ------------------------------
+
+SET NOCOUNT ON;
 
 -- 1. Monitor health of the Ag Replica
 --    Alternatively use the AG Dashboard
@@ -31,4 +34,4 @@ INNER JOIN sys.dm_hadr_availability_replica_states ars
 	ON ars.replica_id = ar.replica_id
 	AND ars.group_id = ar.group_id
 
-
+SET NOCOUNT OFF;

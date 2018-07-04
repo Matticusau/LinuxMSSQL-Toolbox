@@ -5,10 +5,13 @@
 -- Purpose: Provides the details of the top waiting tasks in a SQL Server instance. 
 --          Based on the script was created by Paul Randal http://www.sqlskills.com/blogs/paul/wait-statistics-or-please-tell-me-where-it-hurts/
 --
--- When		Who			What
+-- When		    Who			What
+-- 2018-07-04   MLavery     Added NOCOUNT
 -- 
 ------------------------------
 --
+
+SET NOCOUNT ON;
 
 WITH [Waits] AS
     (SELECT
@@ -123,3 +126,5 @@ INNER JOIN [Waits] AS [W2] ON [W2].[RowNum] <= [W1].[RowNum]
 GROUP BY [W1].[RowNum]
 HAVING SUM ([W2].[Percentage]) - MAX( [W1].[Percentage] ) < 95; -- percentage threshold
 GO
+
+SET NOCOUNT OFF;

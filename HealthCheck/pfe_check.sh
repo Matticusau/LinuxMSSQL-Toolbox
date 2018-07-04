@@ -3,12 +3,13 @@
 #           Part of the LinuxMSSQL-Toolbox - https://github.com/Matticusau/LinuxMSSQL-Toolbox
 # Author:   Matticusau / MLavery (PFE)
 # Date:     19/06/2018
-# Version:  0.1.2
+# Version:  0.1.4
 #
 # Version   When          Who       What
 # 0.1.1     20/06/2018    MLavery   Added log file clean up, SQL scripts, work file logging
 # 0.1.2     21/06/2018    MLavery   Added Top Waits check
 # 0.1.3     22/06/2018    MLavery   Added VLFs, DB Space
+# 0.1.4     04/07/2018    MLavery   Added uptime info
 #
 # make sure you have execute rights
 # chmod +rwx pfe_check.sh
@@ -57,6 +58,10 @@ echo -e "**************************************************************\nPFE Che
 echo -e $(hostname) >> $WORK_FILE;
 echo -e $NOW >> $WORK_FILE;
 echo -e "**************************************************************" >> $WORK_FILE;
+
+# uptime
+echo -e "\n-------------------------------\nUp Time\n-------------------------------" >> $WORK_FILE;
+echo -e "$(hostname): $(awk '{ print $1/60/60/24 " days" }' /proc/uptime)" >> $WORK_FILE;
 
 # cpu usage
 echo -e "\n-------------------------------\nCPU (top)\n-------------------------------" >> $WORK_FILE;

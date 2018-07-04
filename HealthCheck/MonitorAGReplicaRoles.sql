@@ -3,9 +3,12 @@
 -- Author:	MLavery
 -- Date:	18/06/2018
 --
--- When		Who			What
--- 
+-- When		    Who			What
+-- 2018-07-04   MLavery     Added NOCOUNT
+--
 ------------------------------
+
+SET NOCOUNT ON;
 
 -- 1. Monitor Replica Roles of the AG
 --    Alternatively use the AG Dashboard
@@ -19,3 +22,5 @@ JOIN sys.dm_hadr_availability_replica_cluster_states cs
 JOIN sys.dm_hadr_availability_replica_states rs  
     ON rs.replica_id = cs.replica_id
 ORDER BY group_name, replica_server_name
+
+SET NOCOUNT OFF;

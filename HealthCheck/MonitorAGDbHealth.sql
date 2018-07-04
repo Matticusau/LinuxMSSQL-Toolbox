@@ -4,8 +4,11 @@
 -- Date:	18/06/2018
 --
 -- When		Who			What
+-- 2018-07-04   MLavery     Added NOCOUNT
 -- 
 ------------------------------
+
+SET NOCOUNT ON;
 
 -- 1. Monitor health of the Ag Database
 --    Alternatively use the AG Dashboard
@@ -26,3 +29,5 @@ JOIN sys.dm_hadr_availability_replica_states rs
 JOIN sys.dm_hadr_database_replica_states drs 
     ON rs.replica_id=drs.replica_id
 ORDER BY n.group_name, n.replica_server_name, db_name(drs.database_id)
+
+SET NOCOUNT OFF;
